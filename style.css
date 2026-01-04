@@ -49,13 +49,18 @@ body {
   padding: 8px;
   text-align: center;
 }
-
+/* 
 .box-container {
-  /* perspective: 500px; */
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 80px;
+} */
+
+.exercise {
+  color: white;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .box {
@@ -65,11 +70,11 @@ body {
   aspect-ratio: 1/1;
   border-radius: 8px;
   color: white;
-  display: grid;
-  place-content: center;
+  /* display: grid; */
+  /* place-content: center; */
   font-size: 24px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin-top: 10px;
+  /* margin-top: 10px; */
 
   /* opacity: 0; */
   /* transition: 0.3s; */
@@ -118,24 +123,6 @@ body {
   cursor: pointer;
 } */
 
-/* Challenge 2 */
-.clock-circle {
-  width: 10px;
-  aspect-ratio: 1/1;
-  background-color: black;
-  border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  animation: clock-animation 5s;
-  animation-delay: 0.5s;
-  /* animation-timing-function: linear; */
-  /* animation-iteration-count: infinite; */
-  /* animation-direction: alternate; */
-  /* animation-fill-mode: both; */
-}
-
 /*
   Useful website for transitions:
   https://www.joshwcomeau.com/animation/css-transitions/
@@ -160,26 +147,75 @@ body {
 
  */
 
+/* Challenge 2 */
+
+.clock-circle {
+  position: absolute;
+  width: 10px;
+  aspect-ratio: 1/1;
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
 .clock-bar {
-  --bar-space: 10px;
-  width: 2px;
-  height: 50px;
+  --time: 60s;
+  position: absolute;
   background-color: white;
-  height: calc(50% - var(--bar-space));
-  margin-top: var(--bar-space);
-  border-radius: 3px;
+  width: 2px;
+  height: 40%;
+  margin-top: 10%;
+  /* border: 1px solid white; */
+  border-radius: 5px;
+  top: 0;
+  left: 50%;
+  translate: -50%;
+  rotate: 1turn;
+  transform-origin: bottom center;
+  transition: rotate var(--time) linear;
+  /* transition: rotate var(--time) steps(60, end); */
+}
 
-  /* Challenge 2 */
-  /* transform: rotate(1turn); */
-  /* transition: transform 60s; */
-  /* transition-timing-function: steps(60, start); */
-  /* transform-origin: bottom center; */
-  /* transition-timing-function: linear; */
+.container:has(.exercise__checkbox:checked) .clock-bar {
+  /*
+    In order to start a transition, there must be a visual change.
+    Here we have to change rotate, e.g. from 1 to 2turn
+   */
+  rotate: 2turn;
+  transition: rotate var(--time) steps(60, end);
+}
 
-  /* Challenge 3 - Exercise 1 */
-  /* animation: clock-bar-animation 60s infinite linear;
-  animation-timing-function: steps(60, start);
-  transform-origin: bottom center; */
+.num {
+  font-size: 1rem;
+  font-weight: 500;
+  position: absolute;
+}
+
+._3 {
+  top: 50%;
+  left: 1%;
+  translate: 0 -50%;
+}
+
+._6 {
+  top: 100%;
+  left: 50%;
+  translate: -50% -100%;
+}
+
+._9 {
+  top: 50%;
+  left: 99%;
+  translate: -100% -50%;
+}
+
+._12 {
+  top: 0;
+  left: 50%;
+  translate: -50%;
 }
 
 .earth,
