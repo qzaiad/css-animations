@@ -1,0 +1,292 @@
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  display: inline-block;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  font-family: "Arial";
+  background-color: black;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text {
+  background-color: rgb(220, 171, 58);
+  color: white;
+  border-radius: 4px;
+  padding: 8px;
+  text-align: center;
+}
+
+.box-container {
+  /* perspective: 500px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 80px;
+}
+
+.box {
+  position: relative;
+  background-color: rgb(58, 179, 220);
+  width: 150px;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  color: white;
+  display: grid;
+  place-content: center;
+  font-size: 24px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+
+  /* opacity: 0; */
+  /* transition: 0.3s; */
+}
+
+/* Challenge 1 - Exercise 1 */
+.arrow {
+  position: absolute;
+  width: 15px;
+  aspect-ratio: 1/1;
+  background-color: rgb(58, 179, 220);
+  top: 0;
+  left: 50%;
+  transform: scaleX(0.8) translate(-50%, -50%) rotate(45deg);
+}
+
+.close-button {
+  position: absolute;
+  /* font-family: cursive; */
+  font-size: 16px;
+  top: 0;
+  right: 5px;
+  transform: translateY(-100%);
+  cursor: pointer;
+}
+/* 
+.text:hover + .box {
+  opacity: 1;
+}
+ */
+
+/* .arrow {
+  width: 10px;
+  aspect-ratio: 1/1;
+  background: rgb(58, 179, 220);
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+} */
+
+/* Challenge 1 -  Exercise 2 */
+/* .close-button {
+  position: absolute;
+  right: 5px;
+  transform: translateY(-110%);
+  cursor: pointer;
+} */
+
+/* Challenge 2 */
+.clock-circle {
+  width: 10px;
+  aspect-ratio: 1/1;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: clock-animation 5s;
+  animation-delay: 0.5s;
+  /* animation-timing-function: linear; */
+  /* animation-iteration-count: infinite; */
+  /* animation-direction: alternate; */
+  /* animation-fill-mode: both; */
+}
+
+/*
+  Useful website for transitions:
+  https://www.joshwcomeau.com/animation/css-transitions/
+
+  timing-function:
+  - linear
+  - ease-out (start fast end slow)
+   - When would you use ease-out? It's most commonly used when something is entering from off-screen (eg. a modal appearing). It produces the effect that something came hustling in from far away, and settles in front of the user.
+   - الاستخدام: مناسب للمواقف التي تريد فيها أن يبدو العنصر كما لو أنه يتباطأ قبل التوقف.
+
+  - ease-in (start slow end fast)
+   - Note that ease-in is pretty much exclusively useful for animations that end with the element offscreen or invisible; otherwise, the sudden stop can be jarring.
+  - ease-in-out (start slow middle fast end slow)
+   - I find this curve most useful for anything that happens in a loop (eg. an element fading in and out, over and over).
+  - ease (default):
+   - ease is a great option in most cases. If an element moves, and isn't entering or exiting the viewport, ease is usually a good choice.
+   - الاستخدام: شائع جداً للاستخدامات العامة لأنه يعطي تأثيرًا سلسًا وجذابًا.
+  - steps(4, start | end)
+   - animation consist of 4 steps
+   - start: in case of 4 steps, the steps are executed at the following timepoints: 0s, 0.25s, 0.5s 0.75s.
+   - end: in case of 4 steps, the steps are executed at the following timepoints: 0.25s, 0.5s 0.75s, 1s.
+
+ */
+
+.clock-bar {
+  --bar-space: 10px;
+  width: 2px;
+  height: 50px;
+  background-color: white;
+  height: calc(50% - var(--bar-space));
+  margin-top: var(--bar-space);
+  border-radius: 3px;
+
+  /* Challenge 2 */
+  /* transform: rotate(1turn); */
+  /* transition: transform 60s; */
+  /* transition-timing-function: steps(60, start); */
+  /* transform-origin: bottom center; */
+  /* transition-timing-function: linear; */
+
+  /* Challenge 3 - Exercise 1 */
+  /* animation: clock-bar-animation 60s infinite linear;
+  animation-timing-function: steps(60, start);
+  transform-origin: bottom center; */
+}
+
+.earth,
+.earth2 {
+  background-color: rgb(58, 179, 220);
+  width: 150px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  place-content: center;
+  font-size: 24px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.moon-container {
+  position: absolute;
+  /* background-color: red; */
+  width: 220px;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  place-content: center;
+  /* opacity: 0.5; */
+  display: flex;
+  animation: moon-animation 5s linear infinite;
+}
+
+.moon,
+.moon2 {
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px white;
+}
+
+.earth2 {
+  display: grid;
+  place-content: center;
+}
+
+.moon2 {
+  animation: moon2-animation 5s linear infinite;
+}
+
+/* Keyframes */
+@keyframes moon-animation {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moon2-animation {
+  from {
+    transform: rotate(0) translateY(-100px);
+  }
+  to {
+    transform: rotate(360deg) translateY(-100px);
+  }
+}
+
+/* 2-step animations */
+/* @keyframes clock-animation {
+  from {
+    background-color: red;
+    width: 50px;
+  }
+  to {
+    background-color: yellow;
+  }
+} */
+
+/* Multi-step animations */
+/* @keyframes clock-animation {
+  0% {
+    background-color: red;
+    width: 50px;
+  }
+  20% {
+    background-color: purple;
+    width: 10px;
+  }
+  40% {
+    background-color: blue;
+    width: 60px;
+  }
+  60% {
+    background-color: purple;
+    width: 10px;
+  }
+  80% {
+    background-color: orange;
+    width: 50px;
+  }
+  100% {
+    background-color: yellow;
+    width: 10px;
+  }
+} */
+
+@keyframes clock-bar-animation {
+  to {
+    transform: rotate(360deg);
+  }
+}
