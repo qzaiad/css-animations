@@ -40,7 +40,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  /* perspective: 100px; */
 }
 
 .text {
@@ -79,8 +78,6 @@ body {
 
   /* opacity: 0; */
   /* transition: 0.3s; */
-  /* animation: rotateCube 10s 1 forwards; */
-  /* transform-style: preserve-3d; */
 }
 
 /* Challenge 1 - Exercise 1 */
@@ -188,9 +185,8 @@ body {
   left: 50%;
   translate: -50%;
   transform-origin: bottom center;
-  /* rotate: 1turn; */
-  /* transition: rotate linear var(--time); */
-  animation: animation-clock var(--time) linear infinite;
+  rotate: 1turn;
+  transition: rotate linear var(--time);
 }
 
 .container:has(.exercise__checkbox:checked) .clock-bar {
@@ -198,13 +194,9 @@ body {
     In order to start a transition, there must be a visual change.
     Here we have to change rotate, e.g. from 1 to 2turn
    */
-  animation: animation-clock var(--time) steps(60, start) infinite;
-}
-
-@keyframes animation-clock {
-  to {
-    rotate: 360deg;
-  }
+  background-color: white;
+  rotate: 2turn;
+  transition: rotate var(--time) steps(60, start);
 }
 
 .num {
@@ -236,28 +228,6 @@ body {
   left: 50%;
   translate: -50%;
 }
-
-/*
-  Animations (Tips):
-  - Use animations carefully
-  - Typical Usage:
-   1 Change between states
-    - Dropdown
-    - Modal
-     - clicking on a button shows a dialoge with Close button
-   2 Deliver messages to users
-    - e.g. facebook shows notifications that someone interacted with your comment
-    - Confity Animation (progress bar reaches 100% shows party animation)
-   3 Feedback animation
-    - e.g. showing that a button is clicked
-   4 Demonstration
-  
-  Useful Libraries/Websites:
-  - Framer Motion
-  - GreenSock
-  - GSAP
-  - Anime.js
- */
 
 .earth,
 .earth2 {
@@ -365,14 +335,5 @@ body {
 @keyframes clock-bar-animation {
   to {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes rotateCube {
-  0% {
-    transform: rotate3d(1, 1, 0, 0deg);
-  }
-  100% {
-    transform: rotate3d(1, 1, 0, 360deg);
   }
 }

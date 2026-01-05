@@ -39,7 +39,7 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 50px;
   /* perspective: 100px; */
 }
 
@@ -50,81 +50,6 @@ body {
   padding: 8px;
   text-align: center;
 }
-/* 
-.box-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 80px;
-} */
-
-.exercise {
-  color: white;
-  display: flex;
-  gap: 0.5rem;
-}
-
-.box {
-  position: relative;
-  background-color: rgb(58, 179, 220);
-  width: 150px;
-  aspect-ratio: 1/1;
-  border-radius: 8px;
-  color: white;
-  /* display: grid; */
-  /* place-content: center; */
-  font-size: 24px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  /* margin-top: 10px; */
-
-  /* opacity: 0; */
-  /* transition: 0.3s; */
-  /* animation: rotateCube 10s 1 forwards; */
-  /* transform-style: preserve-3d; */
-}
-
-/* Challenge 1 - Exercise 1 */
-.arrow {
-  position: absolute;
-  width: 15px;
-  aspect-ratio: 1/1;
-  background-color: rgb(58, 179, 220);
-  top: 0;
-  left: 50%;
-  transform: scaleX(0.8) translate(-50%, -50%) rotate(45deg);
-}
-
-.close-button {
-  position: absolute;
-  /* font-family: cursive; */
-  font-size: 16px;
-  top: 0;
-  right: 5px;
-  transform: translateY(-100%);
-  cursor: pointer;
-}
-/* 
-.text:hover + .box {
-  opacity: 1;
-}
- */
-
-/* .arrow {
-  width: 10px;
-  aspect-ratio: 1/1;
-  background: rgb(58, 179, 220);
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
-} */
-
-/* Challenge 1 -  Exercise 2 */
-/* .close-button {
-  position: absolute;
-  right: 5px;
-  transform: translateY(-110%);
-  cursor: pointer;
-} */
 
 /*
   Useful website for transitions:
@@ -149,21 +74,6 @@ body {
    - end: in case of 4 steps, the steps are executed at the following timepoints: 0.25s, 0.5s 0.75s, 1s.
 
  */
-
-/* Challenge 2 */
-
-.clock-circle {
-  position: absolute;
-  width: 10px;
-  aspect-ratio: 1/1;
-  background-color: black;
-  border: 1px solid black;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-}
-
 /*
   On page load:
   - The browser applies the final computed value immediately
@@ -175,68 +85,89 @@ body {
 
   Page load ≠ property change.
  */
-.clock-bar {
-  --time: 60s;
+
+.box-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.earth, .earth2 {
+  width: 150px;
+  aspect-ratio: 1/1;
+  background-color: rgb(58, 179, 220);
+  border-radius: 50%;
+  text-align: center;
+  position: relative;
+}
+
+.earth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.earth2 {
+  display: grid;
+  place-items: center;
+}
+
+.moon-container {
   position: absolute;
-  background-color: white;
-  width: 2px;
-  height: 40%;
-  margin-top: 10%;
-  /* border: 1px solid white; */
-  border-radius: 5px;
-  top: 0;
-  left: 50%;
-  translate: -50%;
-  transform-origin: bottom center;
-  /* rotate: 1turn; */
-  /* transition: rotate linear var(--time); */
-  animation: animation-clock var(--time) linear infinite;
+  width: 200px;
+  aspect-ratio: 1/1;
+  /* background-color: red;
+  opacity: 0.5; */
+  animation: animation-moon 5s linear infinite;
 }
 
-.container:has(.exercise__checkbox:checked) .clock-bar {
+@keyframes animation-moon {
   /*
-    In order to start a transition, there must be a visual change.
-    Here we have to change rotate, e.g. from 1 to 2turn
+    The transforms order is important here
+    1. rotate: This will also rotate the XY axis.
+    2. In the new XY axis gotoY -100px
    */
-  animation: animation-clock var(--time) steps(60, start) infinite;
-}
-
-@keyframes animation-clock {
+  from {
+    transform: rotate(0);
+  }
   to {
-    rotate: 360deg;
+    transform: rotate(360deg);
   }
 }
 
-.num {
-  font-size: 1rem;
-  font-weight: 500;
+.moon, .moon2 {
+  width: 20px;
+  aspect-ratio: 1/1;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.moon {
   position: absolute;
-}
-
-._3 {
-  top: 50%;
-  left: 1%;
-  translate: 0 -50%;
-}
-
-._6 {
-  top: 100%;
-  left: 50%;
-  translate: -50% -100%;
-}
-
-._9 {
-  top: 50%;
-  left: 99%;
-  translate: -100% -50%;
-}
-
-._12 {
   top: 0;
   left: 50%;
-  translate: -50%;
+  translate: -50% -50%;
 }
 
+.moon2 {
+  /* transform-origin: center; */
+  animation: animation-moon2 5s linear infinite;
+}
+
+@keyframes animation-moon2 {
+  /*
+    The transforms order is important here
+    1. rotate: This will also rotate the XY axis.
+    2. In the new XY axis gotoY -100px
+   */
+  from {
+    transform: rotate(0) translateY(-100px);
+  }
+  to {
+    transform: rotate(360deg) translateY(-100px);
+  }
+}
 /*
   Animations (Tips):
   - Use animations carefully
@@ -258,7 +189,7 @@ body {
   - GSAP
   - Anime.js
  */
-
+/* 
 .earth,
 .earth2 {
   background-color: rgb(58, 179, 220);
@@ -271,21 +202,21 @@ body {
   font-size: 24px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-
+ */
+/* 
 .moon-container {
   position: absolute;
-  /* background-color: red; */
   width: 220px;
   aspect-ratio: 1/1;
   border-radius: 8px;
   color: white;
   display: flex;
   place-content: center;
-  /* opacity: 0.5; */
   display: flex;
   animation: moon-animation 5s linear infinite;
 }
-
+ */
+/* 
 .moon,
 .moon2 {
   background-color: white;
@@ -294,7 +225,8 @@ body {
   border-radius: 50%;
   box-shadow: 0 0 10px white;
 }
-
+ */
+/*  
 .earth2 {
   display: grid;
   place-content: center;
@@ -303,8 +235,9 @@ body {
 .moon2 {
   animation: moon2-animation 5s linear infinite;
 }
-
+ */
 /* Keyframes */
+/* 
 @keyframes moon-animation {
   from {
     transform: rotate(0);
@@ -322,7 +255,7 @@ body {
     transform: rotate(360deg) translateY(-100px);
   }
 }
-
+ */
 /* 2-step animations */
 /* @keyframes clock-animation {
   from {
@@ -361,18 +294,3 @@ body {
     width: 10px;
   }
 } */
-
-@keyframes clock-bar-animation {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes rotateCube {
-  0% {
-    transform: rotate3d(1, 1, 0, 0deg);
-  }
-  100% {
-    transform: rotate3d(1, 1, 0, 360deg);
-  }
-}
